@@ -1,0 +1,56 @@
+<?php
+// Koneksi ke database (sesuaikan dengan informasi database Anda)
+$host ="localhost";
+$username="root";
+$password="";
+$dbname="santri";
+
+$hd=mysqli_connect($host,$username,$password,$dbname);
+
+if($hd){
+}
+else{
+
+    echo "maaf tidak konek";
+}
+<?php
+  
+include 'Konek.php';
+
+$data = mysqli_query($konek, "SELECT * FROM data_pondok");
+<?php
+  
+  include 'Konek.php';
+
+  $data = mysqli_query($konek, "SELECT * FROM data_pondok");
+  while ($d = mysqli_fetch_array($data)){
+    ?>
+
+    <tr>
+        <th> <?php echo $d["nama_pondok"]; ?> </th>
+        </tr
+// Proses pencarian
+if (isset($_GET['keyword'])) {
+    $keyword = $_GET['keyword'];
+
+    // Query SQL pencarian (sesuaikan dengan struktur tabel Anda)
+    $sql = "SELECT * FROM data_pondok WHERE nama_pondok LIKE '%$keyword%'";
+    
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        echo "<h2>Hasil Pencarian</h2>";
+        echo "<ul>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<li>" . $row['kolom_data'] . "</li>";
+            // Tambahkan kolom-kolom lain sesuai kebutuhan
+        }
+        echo "</ul>";
+    } else {
+        echo "Tidak ada hasil.";
+    }
+}
+
+// Menutup koneksi
+$hd->close();
+?>
